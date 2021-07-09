@@ -46,6 +46,7 @@ export default class App extends Component {
   removeFromCart = (product) => {
     let newCart = this.state.cart.filter((c) => c.product.id !== product.id);
     this.setState({ cart: newCart });
+    aletify.error(product.productName + "Product Removed!", 2);
   };
 
   render() {
@@ -75,6 +76,17 @@ export default class App extends Component {
                       addToCart={this.addToCart}
                       products={this.state.products}
                       info={productInfo}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/cart"
+                  render={(props) => (
+                    <CartList
+                      {...props}
+                      cart={this.state.cart}
+                      removeFromCart={this.removeFromCart}
                     />
                   )}
                 />
